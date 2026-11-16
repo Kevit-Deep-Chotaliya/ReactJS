@@ -1,4 +1,4 @@
-import { useReducer } from 'react'
+import { useId, useReducer } from 'react'
 import './App.css'
 import { act } from 'react'
 
@@ -11,7 +11,7 @@ const emptydata = {
 }
 
 const reducer = (data, action) => {
-  return {...data, [action.type]: action.val}
+  return { ...data, [action.type]: action.val }
 }
 
 
@@ -25,19 +25,19 @@ function App() {
     <>
       <div>
         <h1>Use Reducer</h1>
-        <input type="text" onChange={(e) => dispatch({val: e.target.value, type: "name"})} placeholder='Enter name' />
+        <input type="text" onChange={(e) => dispatch({ val: e.target.value, type: "name" })} placeholder='Enter name' />
         <br /><br />
 
-        <input type="text" onChange={(e) => dispatch({val: e.target.value, type: "email"})} placeholder='Enter email' />
+        <input type="text" onChange={(e) => dispatch({ val: e.target.value, type: "email" })} placeholder='Enter email' />
         <br /><br />
 
-        <input type="text" onChange={(e) => dispatch({val: e.target.value, type: "password"})} placeholder='Enter password' />
+        <input type="text" onChange={(e) => dispatch({ val: e.target.value, type: "password" })} placeholder='Enter password' />
         <br /><br />
 
-        <input type="text" onChange={(e) => dispatch({val: e.target.value, type: "city"})} placeholder='Enter city' />
+        <input type="text" onChange={(e) => dispatch({ val: e.target.value, type: "city" })} placeholder='Enter city' />
         <br /><br />
 
-        <input type="text" onChange={(e) => dispatch({val: e.target.value, type: "address"})} placeholder='Enter address' />
+        <input type="text" onChange={(e) => dispatch({ val: e.target.value, type: "address" })} placeholder='Enter address' />
         <br /><br />
 
         <ul>
@@ -53,5 +53,6 @@ function App() {
     </>
   )
 }
+
 
 export default App
