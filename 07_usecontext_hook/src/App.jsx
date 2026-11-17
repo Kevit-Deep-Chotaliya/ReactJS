@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react'
 import './App.css'
 import ChildA from './components/ChildA';
+import ChildC from './components/ChildC';
 
 //1. create context
 const UserContext = createContext();
@@ -24,7 +25,7 @@ function App() {
         <UserContext.Provider value={User}>
           <ThemeContext.Provider value={{ theme, setTheme }}>
             <div id='container' style={{ backgroundColor: theme === 'light' ? 'beige' : 'darkgrey' }}>
-              <ChildA />
+              <ChildC />
             </div>
           </ThemeContext.Provider>
         </UserContext.Provider>
