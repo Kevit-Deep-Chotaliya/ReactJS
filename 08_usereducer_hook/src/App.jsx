@@ -1,6 +1,5 @@
-import { useId, useReducer } from 'react'
+import { useReducer } from 'react'
 import './App.css'
-import { act } from 'react'
 
 const emptydata = {
   name: "",
