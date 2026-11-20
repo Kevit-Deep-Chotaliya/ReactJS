@@ -1,12 +1,25 @@
 import { useState } from "react"
 import { addPost } from "../api/PostApi";
+import { useEffect } from "react";
 
-const Form = ({ data, setData }) => {
+const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
 
     const [addData, setAddData] = useState({
         title: "",
         body: ""
     });
+
+    let isEmpty = Object.keys(updateDataApi).length === 0;
+
+    //get the updated data and add into input field
+
+    useEffect(() => {
+        updateDataApi && setAddData({
+            title: updateDataApi.title || "",
+            body: updateDataApi.body || ""
+        })
+    }, [updateDataApi])
+
 
     const handleInputChange = (e) => {
         const name = e.target.name;
@@ -26,15 +39,22 @@ const Form = ({ data, setData }) => {
 
         if (res.status === 201) {
             setData([...data, res.data])
-            setAddData({title: "", body: ""})
+            setAddData({ title: "", body: "" })
         }
     }
 
     //Form submission
 
     const handleFormSubmit = (e) => {
-        e.preventDefault(),
+        e.preventDefault()
+        const action = e.nativeEvent.submitter.value;
         addPostData()
+
+        if (action === "Add") {
+            addPostData()
+        } else if (action === "Edit") {
+
+        }
     }
 
     return (
@@ -60,7 +80,9 @@ const Form = ({ data, setData }) => {
                     value={addData.body}
                     onChange={handleInputChange} />
             </div>
-            <button type="submit">ADD</button>
+            <button type="submit" value={isEmpty ? "ADD" : "EDIT"}>
+                {isEmpty ? "ADD" : "EDIT"}
+            </button>
         </form>
     )
 }

@@ -46,7 +46,7 @@ export const Post = () => {
 
     //Function to update post
 
-    const handleUpdatePost = (ele) => updateDataApi(ele)
+    const handleUpdatePost = (ele) => setUpdateDataApi(ele)
 
     return (
         <>

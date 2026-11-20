@@ -25,7 +25,6 @@ export const addPost = (post) => {
 //PUT Method
 
 
-
 //PATCH Method
 
 
