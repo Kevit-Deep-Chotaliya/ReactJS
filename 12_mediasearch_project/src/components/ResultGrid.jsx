@@ -11,7 +11,7 @@ const ResultGrid = () => {
 
     useEffect(function () {
 
-        if (!query) return 
+        if (!query) return
         const getData = async () => {
             try {
 
