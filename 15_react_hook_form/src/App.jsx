@@ -5,10 +5,12 @@ function App() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting},
   } = useForm();
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
+
+    await new Promise((resolve) => setTimeout(resolve, 5000))
     console.log("submitting the form", data)
   }
 
@@ -87,8 +89,13 @@ function App() {
             id="lastname"
             type="text"
             {...register('lastname', {
-              required: 'lastname is required'
-            })}
+              required: true,
+              pattern: {
+                value: /^[A-Za-z]+$/i,
+                message: "Last name is not as per the rules"
+              }
+            },
+            )}
             placeholder="Last name"
             className="w-full px-4 py-3 bg-[#151823] border border-white/5 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:border-purple-400 transition"
           />
@@ -98,6 +105,8 @@ function App() {
         <div className="pt-2">
           <button
             type="submit"
+            disabled= {isSubmitting}
+            value={isSubmitting ? "Submitting" : "Submit" }
             className="w-full py-3.5 bg-gradient-to-r from-[#8264ff] via-[#b04de8] to-[#df49a6] hover:opacity-90 text-white font-semibold rounded-xl shadow-lg transition cursor-pointer active:scale-95"
           >
             Register
