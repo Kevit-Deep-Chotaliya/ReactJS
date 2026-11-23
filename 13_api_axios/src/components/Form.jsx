@@ -10,7 +10,7 @@ const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
         body: ""
     });
 
-    let isEmpty = Object.keys(updateDataApi).length === 0;      
+    let isEmpty = Object.keys(updateDataApi).length === 0;
 
     //get the updated data and add into input field
 
@@ -114,3 +114,4 @@ const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
 }
 
 export default Form
+
