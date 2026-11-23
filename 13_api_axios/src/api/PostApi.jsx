@@ -28,7 +28,7 @@ export const updateData = (id, post) => {
     return api.put(`/posts/${id}`, post)
 }
 
-//PATCH Method
+
 
 
 

@@ -26,6 +26,7 @@ export const Post = () => {
         getPostData();
     }, []);
 
+
     //Function to delete Post
 
     const handleDeletePost = async (id) => {
