@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { deletePost, getPost } from "../api/PostApi";
 import "../App.css";
 import Form from "./Form.jsx";
+import { toast } from "react-toastify";
 
 export const Post = () => {
 
@@ -36,8 +37,9 @@ export const Post = () => {
                 })
 
                 setData(newUpdatedPosts)
+                toast.warn("Post Deleted successfully!")
             } else {
-                console.log("Failed to delete the post", res.status)
+                toast.error("Failed to delete a post")
             }
         } catch (error) {
             console.log(error);

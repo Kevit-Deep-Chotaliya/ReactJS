@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { addPost, updateData } from "../api/PostApi";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
 
@@ -41,6 +42,7 @@ const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
         if (res.status === 201) {
             setData([...data, res.data])
             setAddData({ title: "", body: "" })
+            toast.success("Post created successfully!");
         }
     }
 
@@ -60,10 +62,11 @@ const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
 
                 setAddData({ title: "", body: "" })
                 setUpdateDataApi({});
+                toast.info("Post Updated successfully!");
             }
 
         } catch (error) {
-            console.log(error);
+            toast.error("Failed to update a post")
         }
     }
 
