@@ -1,121 +1,110 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
+import { useForm, ErrorMessage } from 'react-hook-form';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  function onSubmit(data) {
+    console.log("submitting the form", data)
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+    <div className="relative min-h-screen bg-[#11131e] flex items-center justify-center p-4 overflow-hidden">
+      {/* Background Ambient Orbs */}
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#241b44] rounded-full opacity-80 pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-[#2d1e3b] rounded-full opacity-80 pointer-events-none" />
+
+      {/* Main Glass Card */}
+      <form className="relative z-10 w-full max-w-md bg-gradient-to-b from-[#333947]/95 to-[#222733]/95 backdrop-blur-md border border-white/10 p-8 sm:p-10 rounded-3xl shadow-2xl space-y-5"
+        onSubmit={handleSubmit(onSubmit)}>
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold text-white tracking-tight">
+            Registration Form
+          </h1>
+          <p className="text-sm text-gray-400 mt-1">
+            Enter your personal details
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+        <div>
+          <label
+            htmlFor="firstname"
+            className="block text-xs font-semibold uppercase tracking-wider text-gray-200 mb-2"
+          >
+            First Name
+          </label>
+          <input
+            id="firstname"
+            type="text"
+            {...register('firstname', {
+              required: "firstname is required",
+              minLength: {
+                value: 5,
+                message: 'Firstname requires atleast 5 letters'
+              },
+              maxLength: {
+                value: 10,
+                message: 'This input exceed maxLength'
+              }
+            })}
+            placeholder="First name"
+            className="w-full px-4 py-3 bg-[#151823] border border-white/5 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:border-purple-400 transition"
+          />
+          {errors.firstname && <p>{errors.firstname.message}</p>}
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        <div>
+          <label
+            htmlFor="middlename"
+            className="block text-xs font-semibold uppercase tracking-wider text-gray-200 mb-2"
+          >
+            Middle Name
+          </label>
+          <input
+            id="middlename"
+            type="text"
+            {...register('middlename', {
+              required: 'middlename is required'
+            })}
+            placeholder="Middle name"
+            className="w-full px-4 py-3 bg-[#151823] border border-white/5 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:border-purple-400 transition"
+          />
+          {errors.middlename && <p>{errors.middlename.message}</p>}
+        </div>
+
+        <div>
+          <label
+            htmlFor="lastname"
+            className="block text-xs font-semibold uppercase tracking-wider text-gray-200 mb-2"
+          >
+            Last Name
+          </label>
+          <input
+            id="lastname"
+            type="text"
+            {...register('lastname', {
+              required: 'lastname is required'
+            })}
+            placeholder="Last name"
+            className="w-full px-4 py-3 bg-[#151823] border border-white/5 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:border-purple-400 transition"
+          />
+          {errors.lastname && <p>{errors.lastname.message}</p>}
+        </div>
+
+        <div className="pt-2">
+          <button
+            type="submit"
+            className="w-full py-3.5 bg-gradient-to-r from-[#8264ff] via-[#b04de8] to-[#df49a6] hover:opacity-90 text-white font-semibold rounded-xl shadow-lg transition cursor-pointer active:scale-95"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
   )
 }
 
