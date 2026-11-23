@@ -8,7 +8,7 @@ const api = axios.create({
 
 export const getPost = () => {
     return api.get("/posts");
-}   
+}
 
 //DELETE Method
 
@@ -24,6 +24,9 @@ export const addPost = (post) => {
 
 //PUT Method
 
+export const updateData = (id, post) => {
+    return api.put(`/posts/${id}`, post)
+}
 
 //PATCH Method
 

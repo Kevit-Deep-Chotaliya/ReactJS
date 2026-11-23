@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { addPost } from "../api/PostApi";
+import { addPost, updateData } from "../api/PostApi";
 import { useEffect } from "react";
 
 const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
@@ -33,6 +33,7 @@ const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
         })
     }
 
+    //addPostData
     const addPostData = async () => {
         const res = await addPost(addData)
         console.log("res", res)
@@ -43,17 +44,39 @@ const Form = ({ data, setData, updateDataApi, setUpdateDataApi }) => {
         }
     }
 
+    //updatePostData
+    const updatePostData = async () => {
+
+        try {
+            const res = await updateData(updateDataApi.id, addData)
+            console.log(res);
+
+            if (res.status === 200) {
+                setData((prev) => {
+                    return prev.map((curElem) => {
+                        return curElem.id === res.data.id ? res.data : curElem;
+                    })
+                })
+
+                setAddData({ title: "", body: "" })
+                setUpdateDataApi({});
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     //Form submission
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
-        const action = e.nativeEvent.submitter.value;
-        addPostData()
+        const action = e.nativeEvent.submitter.value; //Identifies which submit button triggers the form submission.
 
-        if (action === "Add") {
+        if (action === "ADD") {
             addPostData()
-        } else if (action === "Edit") {
-
+        } else if (action === "EDIT") {
+            updatePostData()
         }
     }
 

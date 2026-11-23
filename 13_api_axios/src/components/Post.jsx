@@ -51,7 +51,10 @@ export const Post = () => {
     return (
         <>
             <section className="section-form">
-                <Form data={data} setData={setData} updateDataApi={updateDataApi} setUpdateDataApi={setUpdateDataApi} />
+                <Form data={data}
+                    setData={setData}
+                    updateDataApi={updateDataApi}
+                    setUpdateDataApi={setUpdateDataApi} />
             </section>
             <section className="section-post">
                 <ol>
@@ -62,7 +65,8 @@ export const Post = () => {
                                 <p>Title: {title}</p>
                                 <p>Body: {body}</p>
                                 <button onClick={() => handleUpdatePost(ele)}>Edit</button>
-                                <button className="btn-delete" onClick={() => handleDeletePost(id)}>Delete</button>
+                                <button className="btn-delete"
+                                    onClick={() => handleDeletePost(id)}>Delete</button>
                             </li>
                         );
                     })}
