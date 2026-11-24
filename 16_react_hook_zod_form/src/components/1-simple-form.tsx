@@ -22,15 +22,29 @@ const SimpleForm: React.FC = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (
-        e: React.ChangeEvent<
-            HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-        >
+        e:
+            | React.ChangeEvent<
+                HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+            >
+            | { target: { name: string; value: string } }
     ) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+
+        if (name.startsWith("address.")) {
+            const field = name.split(".")[1];
+            setFormData({
+                ...formData,
+                address: {
+                    ...formData.address,
+                    [field]: value,
+                },
+            });
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value,
+            });
+        }
     };
 
     const handleHobbyChange = (
@@ -170,8 +184,7 @@ const SimpleForm: React.FC = () => {
                     value={formData.address.city}
                     onChange={(e) =>
                         handleChange({
-                            ...e,
-                            target: { ...e.target, name: "address.city" },
+                            target: { name: "address.city", value: e.target.value },
                         })
                     }
                     placeholder="City"
@@ -185,8 +198,7 @@ const SimpleForm: React.FC = () => {
                     value={formData.address.state}
                     onChange={(e) =>
                         handleChange({
-                            ...e,
-                            target: { ...e.target, name: "address.state" },
+                            target: { name: "address.state", value: e.target.value },
                         })
                     }
                     placeholder="State"
