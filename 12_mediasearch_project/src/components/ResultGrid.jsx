@@ -33,9 +33,8 @@ const ResultGrid = () => {
                         id: item.id,
                         type: "GIF",
                         title: item.title,
-                        thumbnail: item.embed_url,
-                        src: item.url
-
+                        thumbnail: item.images.fixed_height_small.url,
+                        src: item.images.original.url
                     }))
                 }
                 dispatch(setResults(data))
@@ -54,7 +53,7 @@ const ResultGrid = () => {
     }
 
     return (
-        <div className="flex flex-wrap w-full gap-6 overflow-auto px-10 justify-between">
+        <div className="flex flex-wrap w-full gap-2 overflow-auto px-10 justify-between">
             {results.map((item, idx) => {
                 return <div key={idx}>
                     <ResultCard item={item} />
