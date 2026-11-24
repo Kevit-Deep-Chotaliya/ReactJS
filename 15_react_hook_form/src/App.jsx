@@ -5,7 +5,7 @@ function App() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting},
+    formState: { errors, isSubmitting },
   } = useForm();
 
   async function onSubmit(data) {
@@ -32,6 +32,7 @@ function App() {
           </p>
         </div>
 
+        {/* FIRSTNAME */}
         <div>
           <label
             htmlFor="firstname"
@@ -59,6 +60,7 @@ function App() {
           {errors.firstname && <p>{errors.firstname.message}</p>}
         </div>
 
+        {/* MIDDLENAME */}
         <div>
           <label
             htmlFor="middlename"
@@ -78,6 +80,8 @@ function App() {
           {errors.middlename && <p>{errors.middlename.message}</p>}
         </div>
 
+
+        {/* LASTNAME */}
         <div>
           <label
             htmlFor="lastname"
@@ -102,15 +106,62 @@ function App() {
           {errors.lastname && <p>{errors.lastname.message}</p>}
         </div>
 
+        {/* GENDER */}
+        <div>
+          <label
+            htmlFor="gender"
+            className="block text-xs font-semibold uppercase tracking-wider text-gray-200 mb-2">
+            Gender
+          </label>
+          <select
+            defaultValue=""
+            name="gender"
+            id="gender"
+            {...register("gender")}
+            className="w-full px-4 py-3 bg-[#151823] border border-white/5 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:border-purple-400 transition">
+            <option value="" disabled hidden>Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        {/* AGE */}
+        <div>
+          <label
+            htmlFor="age"
+            className="block text-xs font-semibold uppercase tracking-wider text-gray-200 mb-2">
+            Age
+          </label>
+          <input
+            type="number"
+            id="age"
+            placeholder="age"
+            className="w-full px-4 py-3 bg-[#151823] border border-white/5 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:border-purple-400 transition"
+            {...register("age", {
+              required: "age is required",
+              valueAsNumber: true,
+              min: {
+                value: 18,
+                message: "Age must be at least 18"
+              },
+              max: {
+                value: 30,
+                message: "Age must be at most 30"
+              }
+            })} />
+          {errors.age && <p>{errors.age.message}</p>}
+        </div>
+
+
+        {/* SUBMIT */}
         <div className="pt-2">
-          <button
+          <input
             type="submit"
-            disabled= {isSubmitting}
-            value={isSubmitting ? "Submitting" : "Submit" }
-            className="w-full py-3.5 bg-gradient-to-r from-[#8264ff] via-[#b04de8] to-[#df49a6] hover:opacity-90 text-white font-semibold rounded-xl shadow-lg transition cursor-pointer active:scale-95"
-          >
-            Register
-          </button>
+            disabled={isSubmitting}
+            value={isSubmitting ? "Submitting..." : "Submit"}
+            className="w-full py-3.5 bg-gradient-to-r from-[#8264ff] via-[#b04de8] to-[#df49a6] hover:opacity-90 text-white font-semibold rounded-xl shadow-lg transition cursor-pointer active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 disabled:hover:opacity-50"
+          />
         </div>
       </form>
     </div>
