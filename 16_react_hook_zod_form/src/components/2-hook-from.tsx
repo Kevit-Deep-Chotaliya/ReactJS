@@ -5,8 +5,15 @@ import simulatedApi from "../api/api";
 import { type FormData } from "../types";
 import { Controller, useFieldArray, useForm, type SubmitHandler } from "react-hook-form"
 
-const SimpleForm: React.FC = () => {
-    const { register, formState: { errors, isSubmitting }, control, getValues, handleSubmit, setError } = useForm<FormData>({
+const ReactHookForm: React.FC = () => {
+    const {
+        register,
+        formState: { errors, isSubmitting },
+        control,
+        watch,
+        handleSubmit,
+        setError
+    } = useForm<FormData>({
         defaultValues: {
             firstName: "",
             lastName: "",
@@ -25,6 +32,8 @@ const SimpleForm: React.FC = () => {
         control,
         name: "hobbies"
     })
+
+    const isSubscribed = watch("subscribe");
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         try {
@@ -170,12 +179,13 @@ const SimpleForm: React.FC = () => {
             <div>
                 <label htmlFor="sub">Subscribe to Newsletter</label>
                 <input
+                    id="sub"
                     type="checkbox"
                     {...register("subscribe")}
                 />
             </div>
 
-            {getValues("subscribe") && (
+            {isSubscribed && (
                 <div>
                     <label>Referral Source</label>
                     <input
@@ -200,4 +210,4 @@ const SimpleForm: React.FC = () => {
     );
 };
 
-export default SimpleForm; 
+export default ReactHookForm; 
