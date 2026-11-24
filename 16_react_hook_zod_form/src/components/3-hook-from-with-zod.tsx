@@ -63,7 +63,7 @@ const HookFormWithZod: React.FC = () => {
             firstName: "",
             lastName: "",
             email: "",
-            age: 18,
+            age: undefined,
             gender: undefined,
             address: { city: "", state: "" },
             hobbies: [{ name: "" }],
@@ -166,6 +166,7 @@ const HookFormWithZod: React.FC = () => {
                             <input
                                 id="age"
                                 type="number"
+                                placeholder="18"
                                 className={inputClasses}
                                 {...register("age", { valueAsNumber: true })}
                             />
@@ -342,7 +343,7 @@ const HookFormWithZod: React.FC = () => {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                         {isSubmitting ? "Submitting..." : "Complete Registration"}
                     </button>
