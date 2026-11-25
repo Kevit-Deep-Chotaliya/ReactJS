@@ -24,7 +24,8 @@ const ResultGrid = () => {
                         type: "photo",
                         title: item.alt_description,
                         thumbnail: item.urls.small,
-                        src: item.urls.full
+                        src: item.urls.full,
+                        url: item.links.html
                     }))
                 }
                 if (activeTab == "GIF") {
@@ -34,7 +35,8 @@ const ResultGrid = () => {
                         type: "GIF",
                         title: item.title,
                         thumbnail: item.images.fixed_height_small.url,
-                        src: item.images.original.url
+                        src: item.images.original.url,
+                        url: item.url
                     }))
                 }
                 dispatch(setResults(data))

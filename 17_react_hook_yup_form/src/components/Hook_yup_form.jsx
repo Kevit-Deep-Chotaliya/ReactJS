@@ -24,7 +24,7 @@ const Hook_yup_form = () => {
 
     async function onSubmit(data) {
 
-        await new Promise((resolve) => setTimeout(resolve, 5000))
+        await new Promise((resolve) => setTimeout(resolve, 2000))
         console.log("submitting the form", data)
     }
 
