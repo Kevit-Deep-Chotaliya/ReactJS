@@ -4,8 +4,17 @@ import { Download, Check } from "lucide-react";
 const ResultCard = ({ item }) => {
     const [downloaded, setDownloaded] = useState(false);
 
+    const addToCollection = (item) => {
+        const oldData = JSON.parse(localStorage.getItem('collection')) || []
+
+        const newData = [...oldData, item]
+
+        localStorage.setItem('collection', JSON.stringify(newData))
+
+    }
+
     const handleDownload = (e) => {
-        e.preventDefault(); // Prevents triggering the parent <a> link if needed
+        e.preventDefault();
         setDownloaded(true);
         setTimeout(() => setDownloaded(false), 1500);
     };
@@ -33,7 +42,10 @@ const ResultCard = ({ item }) => {
                 <button
                     type="button"
                     aria-label="Download"
-                    onClick={handleDownload}
+                    onClick={(e) => {
+                        handleDownload(e),
+                            addToCollection(item)
+                    }}
                     className={`group/btn p-2.5 rounded-full backdrop-blur-md border transition-all duration-200 cursor-pointer shrink-0 active:scale-90 ${downloaded
                         ? "bg-emerald-400/30 border-emerald-300/50 text-emerald-200"
                         : "bg-white/15 border-white/25 text-white hover:bg-sky-300/30 hover:border-sky-200/60 hover:text-sky-100 hover:shadow-lg hover:shadow-sky-400/20"
