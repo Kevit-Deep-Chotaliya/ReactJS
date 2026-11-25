@@ -5,6 +5,7 @@ const ResultCard = ({ item }) => {
     const [downloaded, setDownloaded] = useState(false);
 
     const addToCollection = (item) => {
+        
         const oldData = JSON.parse(localStorage.getItem('collection')) || []
 
         const newData = [...oldData, item]
@@ -33,7 +34,7 @@ const ResultCard = ({ item }) => {
 
             <div
                 id="bottom"
-                className="flex justify-between gap-3 items-center w-full px-4 py-6 absolute bottom-0 text-white bg-gradient-to-t from-black/80 via-black/40 to-transparent"
+                className="flex justify-between gap-3 items-center w-full px-4 py-6 absolute bottom-0 text-white bg-linear-to-t from-black/80 via-black/40 to-transparent"
             >
                 <h2 className="text-lg font-semibold capitalize h-14 overflow-hidden">
                     {item.title}
