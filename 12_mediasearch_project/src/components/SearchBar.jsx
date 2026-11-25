@@ -10,7 +10,6 @@ const SearchBar = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(setQuery(text))
-        console.log("form submitted")
     }
 
     return (
