@@ -15,11 +15,11 @@ function App() {
 
   return (
     <>
-     <h2 className='p-4 '>Counter : {count}</h2>
-     <h2>squaredValue: {memoisedSquaredValue}</h2>
-     <h2 className='p-4 '>Counter1 : {count1}</h2>
-     <button onClick={() => setCount(count + 1)}>Increment</button>
-     <button onClick={() => setCount1(count1 - 1)}>Decrement</button>
+      <h2 className='p-4 '>Counter : {count}</h2>
+      <h2>squaredValue: {memoisedSquaredValue}</h2>
+      <h2 className='p-4 '>Counter1 : {count1}</h2>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount1(count1 - 1)}>Decrement</button>
     </>
   )
 }
